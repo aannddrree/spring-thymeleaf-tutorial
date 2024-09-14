@@ -1,6 +1,7 @@
 package com.matera.blog.service;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -20,8 +21,8 @@ public class PostService {
 	}
 	
 	//Retorno um post a partir do ID
-	public Post findOne(Long id) {
-		return repository.findOne(id);
+	public Optional<Post> findOne(Long id) {
+		return repository.findById(id);
 	}
 	
 	//Salva ou atualiza um post
@@ -31,7 +32,7 @@ public class PostService {
 	
 	//Exclui um post
 	public void delete(Long id) {
-		repository.delete(id);
+		repository.deleteById(id);
 	}
 
 }

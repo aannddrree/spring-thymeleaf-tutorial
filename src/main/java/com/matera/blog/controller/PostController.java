@@ -1,17 +1,15 @@
 package com.matera.blog.controller;
 
-import javax.validation.Valid;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
+
+import com.matera.blog.model.Post;
+import com.matera.blog.service.PostService;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.ModelAndView;
-
-import com.matera.blog.model.Post;
-import com.matera.blog.service.PostService;
 
 @Controller //Define a classe como um bean do Spring
 public class PostController {
@@ -43,7 +41,7 @@ public class PostController {
 	@GetMapping("/edit/{id}")
 	public ModelAndView edit(@PathVariable("id") Long id) {
 		
-		return add(service.findOne(id));
+		return add(service.findOne(id).get());
 	}
 	
 	//Exclui um post por seu ID e redireciona para a tela principal
@@ -59,7 +57,7 @@ public class PostController {
 	//Se tudo estiver ok, salva e volta para tela principal
 	//Se houver erro, retorna para tela atual exibindo as mensagens de erro
 	@PostMapping("/save")
-	public ModelAndView save(@Valid Post post, BindingResult result) {
+	public ModelAndView save(Post post, BindingResult result) {
 		
 		if(result.hasErrors()) {
 			return add(post);
