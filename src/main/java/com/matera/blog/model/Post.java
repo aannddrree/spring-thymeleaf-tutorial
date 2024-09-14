@@ -2,8 +2,6 @@ package com.matera.blog.model;
 
 import java.io.Serializable;
 import java.util.Date;
-
-import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
@@ -29,6 +27,7 @@ public class Post implements Serializable {
 	public void setId(Long id) {
 		this.id = id;
 	}
+
 
 	public String getAutor() {
 		return autor;

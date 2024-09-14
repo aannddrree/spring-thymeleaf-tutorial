@@ -54,26 +54,11 @@
 			<artifactId>spring-boot-starter-data-jpa</artifactId>
 		</dependency>
 
-		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-test</artifactId>
-			<scope>test</scope>
-		</dependency>
-
 		<!-- H2 Database -->
 		<dependency>
 			<groupId>com.h2database</groupId>
 			<artifactId>h2</artifactId>
 			<scope>runtime</scope>
 		</dependency>
-
-		<!-- Hibernate Core versão mais recente -->
-		<dependency>
-			<groupId>org.hibernate.orm</groupId>
-			<artifactId>hibernate-core</artifactId>
-			<version>6.3.1.Final</version>
-		</dependency>
-
 	</dependencies>
-
 </project>

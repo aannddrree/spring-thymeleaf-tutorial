@@ -3,64 +3,64 @@
 <head>
 	<meta charset="UTF-8" />
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-	<meta name="viewport" content="width=device-width" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 	<title>Cadastro de Posts</title>
-	<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet"></link>
-	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+	<!-- Bootstrap 5 -->
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </head>
 <body>
-	<div class="panel panel-default">
-		<div class="panel-heading">
+<div class="container my-5">
+	<div class="card shadow-sm">
+		<div class="card-header bg-primary text-white">
 			<strong>Cadastro de Posts</strong>
 		</div>
-		<div class="panel-body">
-			<form class="form-horizontal" th:object="${post}" th:action="@{/save}" method="POST" style="margin: 10px">
-				<div class="form-group">
- 					<fieldset>
-						<div class="form-group row">
-							<div class="alert alert-danger" th:if="${#fields.hasAnyErrors()}">
-								<div th:each="detailedError : ${#fields.detailedErrors()}">
-									<span th:text="${detailedError.message}"></span>
-								</div>
-							</div>
-						</div> 					
-						<div class="form-group row">
-						    <div class="col-md-1">
-						        <input type="text" class="form-control input-sm" id="id" th:field="*{id}" readOnly="readonly"/>
-						    </div>
-						 </div>
-						<div class="form-group row">                                                          
-							<div class="col-md-4" th:classappend="${#fields.hasErrors('autor')}? 'has-error'">
-							    <label>Autor</label>
-							    <input type="text" class="form-control input-sm" th:field="*{autor}" autofocus="autofocus" placeholder="Informe o autor" maxlength="50"/>
-							</div>
+		<div class="card-body">
+			<form th:object="${post}" th:action="@{/save}" method="POST">
+				<div class="mb-3">
+					<div class="alert alert-danger d-none" role="alert" th:if="${#fields.hasAnyErrors()}">
+						<div th:each="detailedError : ${#fields.detailedErrors()}">
+							<span th:text="${detailedError.message}"></span>
 						</div>
-						<div class="form-group row">
-							<div class="col-md-4" th:classappend="${#fields.hasErrors('titulo')}? 'has-error'">
-								<label>T&iacute;tulo</label> 
-								<input type="text" class="form-control input-sm" th:field="*{titulo}" maxlength="150" placeholder="Informe o título"/>
-							</div>
-						</div>
-						<div class="form-group row">
-							<div class="col-md-2" th:classappend="${#fields.hasErrors('data')}? 'has-error'">
-								<label>Data</label> 
-								<input type="date" class="form-control input-sm" th:field="*{data}"/>
-							</div>
-						</div>						
-						<div class="form-group row">
-							<div class="col-md-4" th:classappend="${#fields.hasErrors('texto')}? 'has-error'">
-								<label>Texto</label>
-								<textarea class="form-control input-sm" th:field="*{texto}" cols="5" rows="5" placeholder="Informe o texto"></textarea>
-							</div>
-						</div>						
-					</fieldset>
+					</div>
 				</div>
-				<div class="form-group row">
-					<button type="submit" class="btn btn-sm btn-primary">Salvar</button>
-					<a th:href="@{/}" class="btn btn-sm btn-default">Cancelar</a>
+
+				<div class="mb-3">
+					<label for="id" class="form-label">ID</label>
+					<input type="text" class="form-control" id="id" th:field="*{id}" readonly/>
+				</div>
+
+				<div class="mb-3">
+					<label for="autor" class="form-label">Autor</label>
+					<input type="text" class="form-control" id="autor" th:field="*{autor}" placeholder="Informe o autor" maxlength="50"/>
+					<div class="invalid-feedback" th:if="${#fields.hasErrors('autor')}" th:text="${#fields.errors('autor')}"></div>
+				</div>
+
+				<div class="mb-3">
+					<label for="titulo" class="form-label">Título</label>
+					<input type="text" class="form-control" id="titulo" th:field="*{titulo}" placeholder="Informe o título" maxlength="150"/>
+					<div class="invalid-feedback" th:if="${#fields.hasErrors('titulo')}" th:text="${#fields.errors('titulo')}"></div>
+				</div>
+
+				<div class="mb-3">
+					<label for="data" class="form-label">Data</label>
+					<input type="date" class="form-control" id="data" th:field="*{data}"/>
+					<div class="invalid-feedback" th:if="${#fields.hasErrors('data')}" th:text="${#fields.errors('data')}"></div>
+				</div>
+
+				<div class="mb-3">
+					<label for="texto" class="form-label">Texto</label>
+					<textarea class="form-control" id="texto" th:field="*{texto}" rows="5" placeholder="Informe o texto"></textarea>
+					<div class="invalid-feedback" th:if="${#fields.hasErrors('texto')}" th:text="${#fields.errors('texto')}"></div>
+				</div>
+
+				<div class="d-flex justify-content-between">
+					<button type="submit" class="btn btn-primary">Salvar</button>
+					<a th:href="@{/}" class="btn btn-secondary">Cancelar</a>
 				</div>
 			</form>
 		</div>
 	</div>
+</div>
 </body>
 </html>
