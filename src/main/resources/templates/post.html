@@ -8,6 +8,13 @@
 	<!-- Bootstrap 5 -->
 	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
 	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+	<script>
+		function confirmDelete(event) {
+			if (!confirm("Você tem certeza de que deseja excluir este post?")) {
+				event.preventDefault(); // Impede a navegação se a confirmação for cancelada
+			}
+		}
+	</script>
 </head>
 <body>
 <div class="container my-5">
@@ -36,7 +43,7 @@
 						<td>
 							<div class="d-flex justify-content-end gap-2">
 								<a class="btn btn-sm btn-outline-primary" th:href="@{/edit/{id}(id=${post.id})}">Editar</a>
-								<a class="btn btn-sm btn-outline-danger" th:href="@{/delete/{id}(id=${post.id})}">Excluir</a>
+								<a class="btn btn-sm btn-outline-danger" th:href="@{/delete/{id}(id=${post.id})}" onclick="confirmDelete(event)">Excluir</a>
 							</div>
 						</td>
 					</tr>
