@@ -5,6 +5,7 @@ import java.util.Date;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
+import jakarta.persistence.ManyToOne;
 import org.springframework.format.annotation.DateTimeFormat;
 
 @Entity
@@ -16,6 +17,17 @@ public class Post implements Serializable {
 	private String autor;
 	private String titulo;
 	private String texto;
+
+	@ManyToOne
+	private TypePost typePost;
+
+	public TypePost getTypePost() {
+		return typePost;
+	}
+
+	public void setTypePost(TypePost typePost) {
+		this.typePost = typePost;
+	}
 
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	private Date data;

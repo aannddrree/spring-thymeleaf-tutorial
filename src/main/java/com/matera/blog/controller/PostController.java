@@ -1,5 +1,8 @@
 package com.matera.blog.controller;
 
+import com.matera.blog.model.TypePost;
+import com.matera.blog.repository.TypePostRepository;
+import com.matera.blog.service.TypePostService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
@@ -11,11 +14,16 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.ModelAndView;
 
+import java.util.List;
+
 @Controller //Define a classe como um bean do Spring
 public class PostController {
 	
 	@Autowired
 	private PostService service; //	Injeta a classe de serviços
+
+	@Autowired
+	private TypePostService typePostService;
 	
 	//Vai para tela principal do CRUD aonde são listados todos os posts
 	@GetMapping("/")
@@ -33,7 +41,8 @@ public class PostController {
 		
 		ModelAndView mv = new ModelAndView("/postAdd");
 		mv.addObject("post", post);
-		
+		mv.addObject("tipos", typePostService.findAll());
+
 		return mv;
 	}
 	

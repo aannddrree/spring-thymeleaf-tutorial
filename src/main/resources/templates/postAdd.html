@@ -49,6 +49,15 @@
 				</div>
 
 				<div class="mb-3">
+					<label for="typePost" class="form-label">Tipo</label>
+					<select class="form-select" id="typePost" th:field="*{typePost}">
+						<option value="">Selecione um tipo</option>
+						<option th:each="typePost : ${tipos}" th:value="${typePost.id}" th:text="${typePost.description}"></option>
+					</select>
+					<div class="invalid-feedback" th:if="${#fields.hasErrors('typePost')}" th:text="${#fields.errors('typePost')}"></div>
+				</div>
+
+				<div class="mb-3">
 					<label for="texto" class="form-label">Texto</label>
 					<textarea class="form-control" id="texto" th:field="*{texto}" rows="5" placeholder="Informe o texto"></textarea>
 					<div class="invalid-feedback" th:if="${#fields.hasErrors('texto')}" th:text="${#fields.errors('texto')}"></div>

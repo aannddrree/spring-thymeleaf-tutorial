@@ -31,6 +31,7 @@
 						<th>Autor</th>
 						<th>Título</th>
 						<th>Data</th>
+						<th>Tipo</th>
 						<th>Ações</th>
 					</tr>
 					</thead>
@@ -40,6 +41,7 @@
 						<td th:text="${post.autor}"></td>
 						<td th:text="${post.titulo}"></td>
 						<td th:text="${#dates.format(post.data, 'dd/MM/yyyy')}"></td>
+						<td th:text="${post.typePost.description}"></td>
 						<td>
 							<div class="d-flex justify-content-end gap-2">
 								<a class="btn btn-sm btn-outline-primary" th:href="@{/edit/{id}(id=${post.id})}">Editar</a>
